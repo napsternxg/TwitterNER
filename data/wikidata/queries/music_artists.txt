@@ -1,0 +1,8 @@
+SELECT ?itemLabel 
+WHERE {
+  ?item wdt:P31 wd:Q5 . #instance of human
+        ?item wdt:P106/wdt:P279 wd:Q639669 . #occupation a subclass of musician
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "en" .
+   }
+}
