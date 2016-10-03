@@ -87,3 +87,18 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+
+## Custom files
+#
+data/cleaned/custom_lexicons/all_geonames.txt
+data/cleaned/all_geonames.txt
+data/cleaned/all_movie_titles.txt
+data/cleaned/custom_lexicons/musicartist_names.unique.txt
+data/cleaned/custom_lexicons/musicartist_namevariants.unique.txt
+
+data/extra_gazetteers/**/*
+*.tsv
+*.err
+*.out
+*.log
