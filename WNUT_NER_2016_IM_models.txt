@@ -1,0 +1,250 @@
+SGD: Regex
+
+processed 23050 tokens with 937 phrases; found: 266 phrases; correct: 32.
+accuracy:  91.24%; precision:  12.03%; recall:   3.42%; FB1:   5.32
+          company: precision:   0.00%; recall:   0.00%; FB1:   0.00  8
+         facility: precision:   0.00%; recall:   0.00%; FB1:   0.00  2
+          geo-loc: precision:  17.24%; recall:   3.09%; FB1:   5.24  29
+            movie: precision:  14.29%; recall:   5.56%; FB1:   8.00  7
+      musicartist: precision:   0.00%; recall:   0.00%; FB1:   0.00  10
+            other: precision:  11.11%; recall:   3.91%; FB1:   5.79  63
+           person: precision:  30.91%; recall:   6.97%; FB1:  11.37  55
+          product: precision:   2.20%; recall:   4.35%; FB1:   2.92  91
+       sportsteam: precision:   0.00%; recall:   0.00%; FB1:   0.00  1
+           tvshow: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+
+
+processed 23050 tokens with 937 phrases; found: 266 phrases; correct: 79.
+accuracy:  92.03%; precision:  29.70%; recall:   8.43%; FB1:  13.13
+                 : precision:  29.70%; recall:   8.43%; FB1:  13.13  266		   
+		   
+		   
+SGD: Dict + Regex
+
+processed 23050 tokens with 937 phrases; found: 701 phrases; correct: 285.
+accuracy:  93.66%; precision:  40.66%; recall:  30.42%; FB1:  34.80
+          company: precision:  53.57%; recall:  20.83%; FB1:  30.00  28
+         facility: precision:  14.29%; recall:  10.87%; FB1:  12.35  35
+          geo-loc: precision:  41.40%; recall:  54.94%; FB1:  47.21  215
+            movie: precision:  11.11%; recall:   5.56%; FB1:   7.41  9
+      musicartist: precision:  50.00%; recall:   3.51%; FB1:   6.56  4
+            other: precision:  24.11%; recall:  15.08%; FB1:  18.56  112
+           person: precision:  55.65%; recall:  54.51%; FB1:  55.07  239
+          product: precision:  15.15%; recall:  10.87%; FB1:  12.66  33
+       sportsteam: precision:  42.11%; recall:   7.62%; FB1:  12.90  19
+           tvshow: precision:   0.00%; recall:   0.00%; FB1:   0.00  7
+		   
+		   
+processed 23050 tokens with 937 phrases; found: 694 phrases; correct: 394.
+accuracy:  94.75%; precision:  56.77%; recall:  42.05%; FB1:  48.31
+                 : precision:  56.77%; recall:  42.05%; FB1:  48.31  694		   
+
+
+SGD: Dict + Regex + 200D glove
+
+
+processed 23050 tokens with 937 phrases; found: 1054 phrases; correct: 365.
+accuracy:  93.00%; precision:  34.63%; recall:  38.95%; FB1:  36.66
+          company: precision:  35.82%; recall:  33.33%; FB1:  34.53  67
+         facility: precision:   8.62%; recall:  10.87%; FB1:   9.62  58
+          geo-loc: precision:  39.60%; recall:  61.11%; FB1:  48.06  250
+            movie: precision:   7.69%; recall:   5.56%; FB1:   6.45  13
+      musicartist: precision:  21.43%; recall:   5.26%; FB1:   8.45  14
+            other: precision:  16.06%; recall:  22.35%; FB1:  18.69  249
+           person: precision:  51.56%; recall:  67.62%; FB1:  58.51  320
+          product: precision:  20.45%; recall:  19.57%; FB1:  20.00  44
+       sportsteam: precision:  61.29%; recall:  18.10%; FB1:  27.94  31
+           tvshow: precision:   0.00%; recall:   0.00%; FB1:   0.00  8
+		   
+		   
+processed 23050 tokens with 937 phrases; found: 1032 phrases; correct: 517.
+accuracy:  94.52%; precision:  50.10%; recall:  55.18%; FB1:  52.51
+                 : precision:  50.10%; recall:  55.18%; FB1:  52.51  1032		   
+				 
+				 
+SGD: 200D glove + Dict + Regex + Brown Cluster
+
+processed 23050 tokens with 937 phrases; found: 804 phrases; correct: 362.
+accuracy:  94.33%; precision:  45.02%; recall:  38.63%; FB1:  41.59
+          company: precision:  38.89%; recall:  29.17%; FB1:  33.33  54
+         facility: precision:  25.81%; recall:  17.39%; FB1:  20.78  31
+          geo-loc: precision:  47.00%; recall:  62.96%; FB1:  53.83  217
+            movie: precision:  16.67%; recall:   5.56%; FB1:   8.33  6
+      musicartist: precision:  33.33%; recall:   5.26%; FB1:   9.09  9
+            other: precision:  23.35%; recall:  21.79%; FB1:  22.54  167
+           person: precision:  60.98%; recall:  65.98%; FB1:  63.39  264
+          product: precision:  23.08%; recall:  13.04%; FB1:  16.67  26
+       sportsteam: precision:  76.92%; recall:  19.05%; FB1:  30.53  26
+           tvshow: precision:  25.00%; recall:  12.50%; FB1:  16.67  4
+		   
+		   
+processed 23050 tokens with 937 phrases; found: 794 phrases; correct: 491.
+accuracy:  95.57%; precision:  61.84%; recall:  52.40%; FB1:  56.73
+                 : precision:  61.84%; recall:  52.40%; FB1:  56.73  794
+
+SGD: 200D glove + Dict + Regex + Brown Cluster + Clark Clusters	 
+
+processed 23050 tokens with 937 phrases; found: 827 phrases; correct: 362.
+accuracy:  94.15%; precision:  43.77%; recall:  38.63%; FB1:  41.04
+          company: precision:  41.51%; recall:  30.56%; FB1:  35.20  53
+         facility: precision:  17.65%; recall:  19.57%; FB1:  18.56  51
+          geo-loc: precision:  49.01%; recall:  61.11%; FB1:  54.40  202
+            movie: precision:  12.50%; recall:   5.56%; FB1:   7.69  8
+      musicartist: precision:  50.00%; recall:   5.26%; FB1:   9.52  6
+            other: precision:  21.02%; recall:  20.67%; FB1:  20.85  176
+           person: precision:  60.74%; recall:  67.21%; FB1:  63.81  270
+          product: precision:  22.58%; recall:  15.22%; FB1:  18.18  31
+       sportsteam: precision:  73.08%; recall:  18.10%; FB1:  29.01  26
+           tvshow: precision:  25.00%; recall:  12.50%; FB1:  16.67  4
+		   
+
+processed 23050 tokens with 937 phrases; found: 818 phrases; correct: 495.
+accuracy:  95.44%; precision:  60.51%; recall:  52.83%; FB1:  56.41
+                 : precision:  60.51%; recall:  52.83%; FB1:  56.41  818	
+		   
+SGD: 200D glove + Dict + Regex + Brown Cluster + Clark Clusters	 + Fine tuned Word Vectors	Clusters	   
+
+processed 23050 tokens with 937 phrases; found: 735 phrases; correct: 362.
+accuracy:  94.70%; precision:  49.25%; recall:  38.63%; FB1:  43.30
+          company: precision:  41.67%; recall:  27.78%; FB1:  33.33  48
+         facility: precision:  28.57%; recall:  13.04%; FB1:  17.91  21
+          geo-loc: precision:  51.56%; recall:  61.11%; FB1:  55.93  192
+            movie: precision:  33.33%; recall:   5.56%; FB1:   9.52  3
+      musicartist: precision:  66.67%; recall:   7.02%; FB1:  12.70  6
+            other: precision:  29.86%; recall:  24.02%; FB1:  26.63  144
+           person: precision:  62.60%; recall:  67.21%; FB1:  64.82  262
+          product: precision:  18.75%; recall:  13.04%; FB1:  15.38  32
+       sportsteam: precision:  78.26%; recall:  17.14%; FB1:  28.13  23
+           tvshow: precision:  25.00%; recall:  12.50%; FB1:  16.67  4				 
+	 
+processed 23050 tokens with 937 phrases; found: 729 phrases; correct: 478.
+accuracy:  95.78%; precision:  65.57%; recall:  51.01%; FB1:  57.38
+                 : precision:  65.57%; recall:  51.01%; FB1:  57.38  729
+				 
+
+				 
+SGD: 200D glove + Dict + Regex + Brown Cluster + Clark Clusters	 + Fine tuned Word Vectors	Clusters [WITHOUT large movie dictionary]
+processed 23050 tokens with 937 phrases; found: 734 phrases; correct: 361.
+accuracy:  94.77%; precision:  49.18%; recall:  38.53%; FB1:  43.21
+          company: precision:  40.00%; recall:  25.00%; FB1:  30.77  45
+         facility: precision:  23.53%; recall:  17.39%; FB1:  20.00  34
+          geo-loc: precision:  51.00%; recall:  62.96%; FB1:  56.35  200
+            movie: precision:  28.57%; recall:  11.11%; FB1:  16.00  7
+      musicartist: precision:  41.67%; recall:   8.77%; FB1:  14.49  12
+            other: precision:  28.24%; recall:  20.67%; FB1:  23.87  131
+           person: precision:  66.53%; recall:  65.98%; FB1:  66.26  242
+          product: precision:  21.21%; recall:  15.22%; FB1:  17.72  33
+       sportsteam: precision:  71.43%; recall:  19.05%; FB1:  30.08  28
+           tvshow: precision:  50.00%; recall:  12.50%; FB1:  20.00  2
+		   
+		   
+processed 23050 tokens with 937 phrases; found: 727 phrases; correct: 477.
+accuracy:  95.81%; precision:  65.61%; recall:  50.91%; FB1:  57.33
+                 : precision:  65.61%; recall:  50.91%; FB1:  57.33  727		   
+				 
+
+				 
+				 
+				 
+				 
+SGD: 200D glove + Dict + Regex + Brown Cluster + Clark Clusters	 + Fine tuned Word Vectors Clusters	+ Global Features
+	 
+processed 23050 tokens with 937 phrases; found: 817 phrases; correct: 359.
+accuracy:  93.61%; precision:  43.94%; recall:  38.31%; FB1:  40.94
+          company: precision:  37.74%; recall:  27.78%; FB1:  32.00  53
+         facility: precision:  21.74%; recall:  10.87%; FB1:  14.49  23
+          geo-loc: precision:  53.89%; recall:  59.88%; FB1:  56.73  180
+            movie: precision:  25.00%; recall:  22.22%; FB1:  23.53  16
+      musicartist: precision:  40.00%; recall:   3.51%; FB1:   6.45  5
+            other: precision:  20.90%; recall:  23.46%; FB1:  22.11  201
+           person: precision:  62.50%; recall:  67.62%; FB1:  64.96  264
+          product: precision:  10.64%; recall:  10.87%; FB1:  10.75  47
+       sportsteam: precision:  72.00%; recall:  17.14%; FB1:  27.69  25
+           tvshow: precision:  33.33%; recall:  12.50%; FB1:  18.18  3
+	 
+processed 23050 tokens with 937 phrases; found: 807 phrases; correct: 468.
+accuracy:  94.80%; precision:  57.99%; recall:  49.95%; FB1:  53.67
+                 : precision:  57.99%; recall:  49.95%; FB1:  53.67  807	 
+				 
+				 
+	 
+SGD: 200D glove + Dict + Regex + Brown Cluster + Global prediction
+
+processed 23050 tokens with 937 phrases; found: 1036 phrases; correct: 370.
+accuracy:  93.00%; precision:  35.71%; recall:  39.49%; FB1:  37.51
+          company: precision:  27.03%; recall:  27.78%; FB1:  27.40  74
+         facility: precision:  13.79%; recall:  17.39%; FB1:  15.38  58
+          geo-loc: precision:  45.74%; recall:  62.96%; FB1:  52.99  223
+            movie: precision:  20.00%; recall:  22.22%; FB1:  21.05  20
+      musicartist: precision:  13.04%; recall:   5.26%; FB1:   7.50  23
+            other: precision:  16.28%; recall:  19.55%; FB1:  17.77  215
+           person: precision:  51.84%; recall:  69.26%; FB1:  59.30  326
+          product: precision:  11.86%; recall:  15.22%; FB1:  13.33  59
+       sportsteam: precision:  65.62%; recall:  20.00%; FB1:  30.66  32
+           tvshow: precision:  16.67%; recall:  12.50%; FB1:  14.29  6
+		   
+processed 23050 tokens with 937 phrases; found: 1015 phrases; correct: 505.
+accuracy:  94.40%; precision:  49.75%; recall:  53.90%; FB1:  51.74
+                 : precision:  49.75%; recall:  53.90%; FB1:  51.74  1015	
+				 
+				 
+SGD: 200D glove + Dict + Regex + Brown Cluster + Global prediction + Random feature dropout				 
+processed 23050 tokens with 937 phrases; found: 842 phrases; correct: 356.
+accuracy:  93.88%; precision:  42.28%; recall:  37.99%; FB1:  40.02
+          company: precision:  36.67%; recall:  30.56%; FB1:  33.33  60
+         facility: precision:  16.00%; recall:  17.39%; FB1:  16.67  50
+          geo-loc: precision:  48.43%; recall:  66.67%; FB1:  56.10  223
+            movie: precision:  29.41%; recall:  27.78%; FB1:  28.57  17
+      musicartist: precision:  45.45%; recall:   8.77%; FB1:  14.71  11
+            other: precision:  21.43%; recall:  15.08%; FB1:  17.70  126
+           person: precision:  56.23%; recall:  64.75%; FB1:  60.19  281
+          product: precision:  13.16%; recall:  10.87%; FB1:  11.90  38
+       sportsteam: precision:  58.62%; recall:  16.19%; FB1:  25.37  29
+           tvshow: precision:  14.29%; recall:  12.50%; FB1:  13.33  7				 
+				 
+processed 23050 tokens with 937 phrases; found: 830 phrases; correct: 467.
+accuracy:  95.00%; precision:  56.27%; recall:  49.84%; FB1:  52.86
+                 : precision:  56.27%; recall:  49.84%; FB1:  52.86  830				 
+
+				 
+BASELINE SYSTEM provided by organizers
+
+accuracy:  93.80%; precision:  38.95%; recall:  31.94%; FB1:  35.10
+          company: precision:  40.00%; recall:  19.44%; FB1:  26.17  35
+         facility: precision:  18.37%; recall:  20.00%; FB1:  19.15  49
+          geo-loc: precision:  46.82%; recall:  50.00%; FB1:  48.36  173
+            movie: precision:   0.00%; recall:   0.00%; FB1:   0.00  4
+      musicartist: precision:   0.00%; recall:   0.00%; FB1:   0.00  10
+            other: precision:  32.82%; recall:  24.02%; FB1:  27.74  131
+           person: precision:  45.36%; recall:  56.15%; FB1:  50.18  302
+          product: precision:  13.16%; recall:  10.87%; FB1:  11.90  38
+       sportsteam: precision:  47.06%; recall:   7.62%; FB1:  13.11  17
+           tvshow: precision:  16.67%; recall:  12.50%; FB1:  14.29  6
+				 
+				 
+processed 23050 tokens with 933 phrases; found: 854 phrases; correct: 462.
+accuracy:  95.07%; precision:  54.10%; recall:  49.52%; FB1:  51.71
+                 : precision:  54.10%; recall:  49.52%; FB1:  51.71  854
+                 : precision:  54.10%; recall:  49.52%; FB1:  51.71  854
+				 
+
+				 
+				 
+SUBMITTED:
+
+processed 23050 tokens with 937 phrases; found: 670 phrases; correct: 291.
+accuracy:  93.86%; precision:  43.43%; recall:  31.06%; FB1:  36.22
+          company: precision:  48.28%; recall:  19.44%; FB1:  27.72  29
+         facility: precision:  36.36%; recall:  26.09%; FB1:  30.38  33
+          geo-loc: precision:  46.74%; recall:  53.09%; FB1:  49.71  184
+            movie: precision:  16.67%; recall:   5.56%; FB1:   8.33  6
+      musicartist: precision:   0.00%; recall:   0.00%; FB1:   0.00  8
+            other: precision:  30.25%; recall:  20.11%; FB1:  24.16  119
+           person: precision:  53.04%; recall:  53.69%; FB1:  53.36  247
+          product: precision:  14.29%; recall:   6.52%; FB1:   8.96  21
+       sportsteam: precision:  40.00%; recall:   7.62%; FB1:  12.80  20
+           tvshow: precision:   0.00%; recall:   0.00%; FB1:   0.00  3
+		   
+processed 23050 tokens with 937 phrases; found: 670 phrases; correct: 406.
+accuracy:  95.12%; precision:  60.60%; recall:  43.33%; FB1:  50.53
+                 : precision:  60.60%; recall:  43.33%; FB1:  50.53  670		   
