@@ -298,13 +298,13 @@ class GlobalFeatures(object):
         features = dict()
         sent_length = len(sent) * 1.
         for word in sent:
-            word = word[WORD_IDX]
+            word = word[self.WORD_IDX]
             lookup_key = preprocess_token(word, to_lower=True)
-            if word2vec_model and lookup_key in word2vec_model:
-                for i,v in enumerate(word2vec_model[lookup_key]):
+            if self.word2vec_model and lookup_key in self.word2vec_model:
+                for i,v in enumerate(self.word2vec_model[lookup_key]):
                     features["_GLOBAL_WORDVEC_%s" % i] = dict.get(features, "_GLOBAL_WORDVEC_%s" % i, 0) + v
-            if cluster_vocabs and lookup_key in cluster_vocabs:
-                v = dict.get(cluster_vocabs, lookup_key)
+            if self.cluster_vocabs and lookup_key in self.cluster_vocabs:
+                v = dict.get(self.cluster_vocabs, lookup_key)
                 features["_GLOBAL_CLUSTER_=%s" % v] = dict.get(features, "_GLOBAL_CLUSTER_=%s" % v, 0) + 1
         features = {k: v / sent_length for k,v in features.iteritems()}
         if predictions:
@@ -317,7 +317,7 @@ class GlobalFeatures(object):
         features = {}
         sent_length = len(sent) * 1.
         for widx, word in enumerate(sent):
-            word = word[WORD_IDX]
+            word = word[self.WORD_IDX]
             lookup_key = preprocess_token(word, to_lower=True)
             if self.word2vec_model and lookup_key in self.word2vec_model:
                 for i,v in enumerate(self.word2vec_model[lookup_key]):
@@ -325,7 +325,7 @@ class GlobalFeatures(object):
             if self.cluster_vocabs and lookup_key in self.cluster_vocabs:
                 v = dict.get(self.cluster_vocabs, lookup_key)
                 features["_GLOBAL_CLUSTER_=%s" % v] = dict.get(features, "_GLOBAL_CLUSTER_=%s" % v, 0) + 1
-            if dict_features:
+            if self.dict_features:
                 d_features = self.dict_features.GetDictFeatures([k[WORD_IDX] for k in sent], widx)
                 for k in d_features:
                     features[k] = dict.get(features, k, 0) + 1
@@ -357,10 +357,10 @@ class GlobalFeatures(object):
    
     def fit_model(self, train_sequences, test_sequences=None):
         if test_sequences is None:
-            train_sequences = test_sequences
+            test_sequences = train_sequences
         self.fit_feature_dict(train_sequences)
         tweet_X_train = self.tranform_sequence2feature(train_sequences)
-        tweet_X_test = self.tranform_sequence2feature(train_sequences)
+        tweet_X_test = self.tranform_sequence2feature(test_sequences)
         self.models = dict()
         for cat_type in self.cat_names:
             print("Processing: %s" % cat_type)

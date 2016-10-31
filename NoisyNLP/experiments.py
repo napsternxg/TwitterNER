@@ -20,9 +20,9 @@ def _base_get_X_y(sequences):
     y = [sent2labels(s) for s in sequences]
     return X, y
     
-def get_X_y(sequences, proc_func=_base_get_X_y, label="Data"):
+def get_X_y(sequences, proc_func=_base_get_X_y, label="Data", **kwargs):
     start = time.time()
-    X, y = proc_func(sequences)
+    X, y = proc_func(sequences, **kwargs)
     end = time.time()
     process_time = end - start
     print("%s feature generation took: %s" % (label, datetime.timedelta(seconds=process_time)))
@@ -53,13 +53,13 @@ class Experiment(object):
         self.vocab = load_vocab(vocab_file)
         
         
-    def gen_model_data(self, proc_func=_base_get_X_y):
+    def gen_model_data(self, proc_func=_base_get_X_y, **kwargs):
         self.X_train, self.y_train = get_X_y(
-            self.train_sequences, proc_func=proc_func, label="Train")
+            self.train_sequences, proc_func=proc_func, label="Train", **kwargs)
         self.X_dev, self.y_dev = get_X_y(
-            self.dev_sequences, proc_func=proc_func, label="Dev")
+            self.dev_sequences, proc_func=proc_func, label="Dev", **kwargs)
         self.X_test, self.y_test = get_X_y(
-            self.test_sequences, proc_func=proc_func, label="Test")
+            self.test_sequences, proc_func=proc_func, label="Test", **kwargs)
         print("Train: %s, %s\nDev: %s, %s\nTest: %s, %s" % (len(self.X_train), len(self.y_train),
                                                             len(self.X_dev), len(self.y_dev),
                                                             len(self.X_test), len(self.y_test)))
