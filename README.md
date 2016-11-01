@@ -1,5 +1,5 @@
 # TwitterNER
-Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/ner-shared-task.html and the corresponding workshop paper at WNUT COLING 2016, titled **Semi-supervised Named Entity Recognition in noisy-text by Shubhanshu Mishra and Jana Diesner**
+Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/ner-shared-task.html and the corresponding workshop paper at WNUT COLING 2016, titled **[Semi-supervised Named Entity Recognition in noisy-text by Shubhanshu Mishra and Jana Diesner](http://noisy-text.github.io/2016/)**
 
 ## Submitted Solution [ST]
 See `Word2Vec.ipynb` for details on the original submitted solution for the task. 
