@@ -1,4 +1,4 @@
-# TwitterNER
+# TwitterNER [![DOI](https://zenodo.org/badge/68426556.svg)](https://zenodo.org/badge/latestdoi/68426556) 
 Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/ner-shared-task.html and the corresponding workshop paper at WNUT COLING 2016, titled **[Semi-supervised Named Entity Recognition in noisy-text by Shubhanshu Mishra and Jana Diesner](http://noisy-text.github.io/2016/)**
 
 ## Submitted Solution [ST]
@@ -23,3 +23,16 @@ See `Data preprocessing.ipynb`
 
 ## Preliminary comparison with RNN models
 See `KerasCharRNN.ipynb`, and `KerasWordRNN.ipynb`
+
+
+Please cite as:
+
+```
+@INPROCEEDINGS {mishra2016_wnut_ner,
+    author    = "Shubhanshu Mishra and Jana Diesner",
+    title     = "Semi-supervised Named Entity Recognition in noisy-text",
+    booktitle = "Proceedings of the 2nd Workshop on Noisy User-generated Text at COLING 2016",
+    year      = "2016",
+    month     = "dec"
+}
+```
