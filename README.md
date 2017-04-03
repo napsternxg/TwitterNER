@@ -3,6 +3,10 @@ Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/n
 
 ![model architechture](COLING2016-WNUT-Model-Architechture.png "Model Architechture")
 
+## Data download
+
+The dataset used in this repository can bs downloaded from https://github.com/aritter/twitter_nlp/tree/master/data/annotated/wnut16
+
 ## Submitted Solution [ST]
 See `Word2Vec.ipynb` for details on the original submitted solution for the task. 
 
