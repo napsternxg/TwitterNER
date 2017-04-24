@@ -102,3 +102,9 @@ data/extra_gazetteers/**/*
 *.err
 *.out
 *.log
+clark_clusters/*
+pickled_data/*
+tb_logs/*
+test_enriched/*
+word_clusters/*
+word_clusters_wv/*
