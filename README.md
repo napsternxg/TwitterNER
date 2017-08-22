@@ -4,12 +4,17 @@ Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/n
 ![model architechture](COLING2016-WNUT-Model-Architechture.png "Model Architechture")
 
 ## Installation
-```pip install future gensim scikit-learn regex matplotlib seaborn sklearn-crfsuite jupyter joblib
+
+```
+pip install future gensim scikit-learn regex matplotlib seaborn sklearn-crfsuite jupyter joblib
 wget http://nlp.stanford.edu/data/glove.twitter.27B.zip
-unzip glove.twitter.27B.zip```
+unzip glove.twitter.27B.zip
+```
 
 ## Usage
-```>>> from run_ner import TwitterNER
+
+```
+>>> from run_ner import TwitterNER
 >>> from twokenize import tokenizeRawTweetText
 >>> from run_ner import TwitterNER
 >>> ner = TwitterNER()
