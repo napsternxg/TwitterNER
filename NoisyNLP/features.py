@@ -167,7 +167,7 @@ class WordVectors(object):
             self.model.intersect_word2vec_format(wordvec_file, binary=False)
         if enrich_iters > 0:
             for i in xrange(enrich_iters):
-                self.model.train(sentences, total_examples=len(sentences))
+                self.model.train(sentences, total_examples=len(sentences), epochs=self.model.iter)
         self.model.init_sims(replace=True)
         
     
@@ -406,6 +406,12 @@ def get_clust_tag_value(lookup_key, cluster_vocab, cluster_tag,
     return (cluster_tag, v)    
 
 
+def get_word(sent, widx, WORD_IDX):
+    if WORD_IDX is None:
+        return sent[widx]
+    return sent[widx][WORD_IDX]
+
+
 def gen_cluster_features(sent, widx, cid, lookup_key, cluster_vocab, WORD_IDX=0, 
                          cluster_tag="_CLUST_", dropout=0, clust_values_tuple=False,
                         interactions=False):
@@ -416,7 +422,7 @@ def gen_cluster_features(sent, widx, cid, lookup_key, cluster_vocab, WORD_IDX=0,
         features.setdefault(*center_word_f)
         ## Previous word
         if widx > 0:
-            lookup_key_prev = preprocess_token(sent[widx-1][WORD_IDX], to_lower=True)
+            lookup_key_prev = preprocess_token(get_word(sent, widx-1, WORD_IDX), to_lower=True)
             if lookup_key_prev in cluster_vocab:
                 prev_word_f = get_clust_tag_value(lookup_key_prev, cluster_vocab, 
                                                  "{}[-1]".format(cluster_tag),
@@ -432,7 +438,7 @@ def gen_cluster_features(sent, widx, cid, lookup_key, cluster_vocab, WORD_IDX=0,
                             features["{}={}|{}={}".format(*(center_word_f+prev_word_f))] = True
         ## Next word
         if widx < len(sent) -1:
-            lookup_key_next = preprocess_token(sent[widx+1][WORD_IDX], to_lower=True)
+            lookup_key_next = preprocess_token(get_word(sent, widx+1, WORD_IDX), to_lower=True)
             if lookup_key_next in cluster_vocab:
                 next_word_f = get_clust_tag_value(lookup_key_next, cluster_vocab, 
                                                  "{}[+1]".format(cluster_tag),
@@ -469,7 +475,7 @@ def word2features(sent, widx, WORD_IDX=0,
                  verbose=False, dropout=0.5,
                  word2vec_model=None,
                  cluster_vocabs=None):
-    word = sent[widx][WORD_IDX]
+    word = get_word(sent, widx, WORD_IDX)
     features = {
         'bias': True,
         #'word_normed': word.lower(),
@@ -515,7 +521,7 @@ def word2features(sent, widx, WORD_IDX=0,
     features.update(regex_features)
     if interactions:
         if widx > 0:
-            regex_features_prev = RegexFeatures.process(sent[widx-1][WORD_IDX])
+            regex_features_prev = RegexFeatures.process(get_word(sent, widx-1, WORD_IDX))
             features.update(("%s[-1]" % k, v) for k,v in regex_features_prev.iteritems())
             features.update({
                     ("%s[-1]|%s" % (k1,k), True)
@@ -524,7 +530,7 @@ def word2features(sent, widx, WORD_IDX=0,
                     if v & v1 & (np.random.rand() > dropout)
                 })
         if widx < len(sent)-1:
-            regex_features_next = RegexFeatures.process(sent[widx+1][WORD_IDX])
+            regex_features_next = RegexFeatures.process(get_word(sent, widx+1, WORD_IDX))
             features.update(("%s[+1]" % k, v) for k,v in regex_features_next.iteritems())
             features.update({
                     ("%s|%s[+1]" % (k,k1), True)
@@ -534,7 +540,11 @@ def word2features(sent, widx, WORD_IDX=0,
                 })
     ## Gazetteer Feature
     if dict_features:
-        d_features = dict_features.GetDictFeatures([k[WORD_IDX] for k in sent], widx)
+        if WORD_IDX is None:
+            words = sent
+        else:
+            words = [k[WORD_IDX] for k in sent]
+        d_features = dict_features.GetDictFeatures(words, widx)
         features.update({k: True for k in d_features})
         d_features = sorted(d_features)
         features.update({"%s|%s" % (k,k1): True for i, k in enumerate(d_features)
@@ -589,4 +599,4 @@ def sent2labels(sent, lbl_id=1):
 
 
 
-    
+

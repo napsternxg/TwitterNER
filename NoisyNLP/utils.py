@@ -24,9 +24,9 @@ OTHER_ENTITIES_KEYS=("isHashtag", "isMention", "isURL", "isMoney", "isNumber", "
 ENTITY_MAPPINGS={k: "__%s__" % k for k in OTHER_ENTITIES_KEYS}
 
 
-def load_sequences(filename, sep="\t", notypes=False, test_data=False):
+def load_sequences(filename, sep="\t", notypes=False, test_data=False, encoding='utf-8'):
     sequences = []
-    with open(filename, encoding='utf-8') as fp:
+    with open(filename, encoding=encoding) as fp:
         seq = []
         for line in fp:
             line = line.strip()
@@ -182,20 +182,37 @@ GLOVE_TWEET_MAPPINGS={
 }
 
 def process_glovevectors(filename):
-    words, dim = 0, 0
+    words, dim, errors = 0, 0, 0
     with open(filename) as fp:
-        for line in fp:
-            #line = line.strip().split(" ")
+        while True:
+            try:
+                line = next(fp)
+                if dim == 0:
+                    dim = len(line.split(" ")) - 1
+            except UnicodeDecodeError:
+                errors += 1
+                continue
+            except StopIteration:
+                break
+            if len(line.split(" ")) != dim + 1:
+                errors += 1
+                continue
             words+= 1
-    line = line.strip().split(" ")
-    dim = len(line) - 1
-    print("Words: {}, dim: {}".format(words, dim))
-    with open(filename) as fp, open("{}.processed.txt".format(filename), "wb+") as fp1:
-        print(words, dim, file=fp1)
-        for line in fp:
-            line = line.strip().split(" ", 1)
-            line[0] = dict.get(GLOVE_TWEET_MAPPINGS, line[0], line[0])
-            print(line[0], line[1], file=fp1)
+    print("Words: {}, dim: {}, errors: {}".format(words, dim, errors))
+    with open(filename) as fp, open("{}.processed.txt".format(filename), "w") as fp1:
+        fp1.write(str(words) + u" " + str(dim) + u"\n")
+        while True:
+            try:
+                line = next(fp)
+                line = line.strip().split(" ", 1)
+                line[0] = dict.get(GLOVE_TWEET_MAPPINGS, line[0], line[0])
+                out_line = line[0] + u" " + line[1] + u"\n"
+                if len(out_line.split(" ")) == dim + 1:
+                    fp1.write(out_line)
+            except (UnicodeDecodeError, UnicodeEncodeError):
+                pass
+            except StopIteration:
+                break
     print("Done")
     
     
@@ -212,4 +229,4 @@ def classification_report_to_df(report):
                     line = line.replace("avg / total", "avg/total")
                 line = re.split(r'\s+', line)
                 report_list.append(tuple(line))
-    return pd.DataFrame(report_list[1:], columns=report_list[0])    
+    return pd.DataFrame(report_list[1:], columns=report_list[0])

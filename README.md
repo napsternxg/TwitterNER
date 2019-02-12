@@ -3,6 +3,31 @@ Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/n
 
 ![model architechture](COLING2016-WNUT-Model-Architechture.png "Model Architechture")
 
+## Installation
+
+```
+pip install future gensim scikit-learn regex matplotlib seaborn sklearn-crfsuite jupyter joblib
+wget http://nlp.stanford.edu/data/glove.twitter.27B.zip
+unzip glove.twitter.27B.zip
+```
+
+## Usage
+
+```
+>>> from run_ner import TwitterNER
+>>> from twokenize import tokenizeRawTweetText
+>>> from run_ner import TwitterNER
+>>> ner = TwitterNER()
+>>> tweet = "Beautiful day in Chicago! Nice to get away from the Florida heat."
+>>> tokens = tokenizeRawTweetText(tweet)
+>>> ner.get_entities(tokens)
+[(3, 4, 'LOCATION'), (11, 12, 'LOCATION')]
+>>> " ".join(tokens[3:4])
+'Chicago'
+>>> " ".join(tokens[11:12])
+'Florida'
+```
+
 ## Data download
 
 The dataset used in this repository can bs downloaded from https://github.com/aritter/twitter_nlp/tree/master/data/annotated/wnut16
