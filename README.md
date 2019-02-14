@@ -73,4 +73,4 @@ Please cite as:
 
 
 ## Acknowledgements
-* @georgercooper - Making the model available as a python library. 
+* [George Cooper](https://github.com/georgercooper) - Making the model available as a python library. 
