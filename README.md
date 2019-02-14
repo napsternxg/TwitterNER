@@ -70,3 +70,7 @@ Please cite as:
     month     = "dec"
 }
 ```
+
+
+## Acknowledgements
+* @georgercooper - Making the model available as a python library. 
