@@ -6,17 +6,20 @@ Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/n
 ## Installation
 
 ```
-pip install future gensim scikit-learn regex matplotlib seaborn sklearn-crfsuite jupyter joblib
+pip install -r requirements.txt
+cd data
 wget http://nlp.stanford.edu/data/glove.twitter.27B.zip
 unzip glove.twitter.27B.zip
+cd ..
 ```
 
 ## Usage
 
 ```
+$ cd NoisyNLP
+$ python
 >>> from run_ner import TwitterNER
 >>> from twokenize import tokenizeRawTweetText
->>> from run_ner import TwitterNER
 >>> ner = TwitterNER()
 >>> tweet = "Beautiful day in Chicago! Nice to get away from the Florida heat."
 >>> tokens = tokenizeRawTweetText(tweet)
@@ -73,4 +76,4 @@ Please cite as:
 
 
 ## Acknowledgements
-* [George Cooper](https://github.com/georgercooper) - Making the model available as a python library. 
+* [George Cooper](https://github.com/georgercooper) - Making the model available as a python library.

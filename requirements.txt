@@ -1,0 +1,10 @@
+future
+gensim
+scikit-learn
+regex
+matplotlib
+seaborn
+six
+sklearn-crfsuite
+jupyter
+joblib

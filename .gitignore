@@ -10,6 +10,7 @@ __pycache__/
 .Python
 env/
 build/
+data/glove.twitter*
 develop-eggs/
 dist/
 downloads/
@@ -96,7 +97,6 @@ data/cleaned/all_geonames.txt
 data/cleaned/all_movie_titles.txt
 data/cleaned/custom_lexicons/musicartist_names.unique.txt
 data/cleaned/custom_lexicons/musicartist_namevariants.unique.txt
-data/*
 data/extra_gazetteers/**/*
 *.err
 *.out
