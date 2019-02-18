@@ -15,8 +15,10 @@ import regex as re
 import subprocess
 import string
 import os
+import sys
+import six
 
-from .utils import *
+from utils import *
 
 
 class RegexFeatures(object):
@@ -50,7 +52,7 @@ class RegexFeatures(object):
     @staticmethod
     def process(word):
         features = dict()
-        for k, p in RegexFeatures.PATTERNS.iteritems():
+        for k, p in six.iteritems(RegexFeatures.PATTERNS):
             if p.match(word):
                 features[k] = True
         return features
@@ -83,11 +85,11 @@ class DictionaryFeatures(object):
                 word = word.strip(' ').lower()
                 word = WORD_SPLITTER.sub(" ", word)
                 word_hashtag = "".join(WORD_SPLITTER.split(word))
-                if not self.word2dictionaries.has_key(word):
+                if word not in self.word2dictionaries:
                     self.word2dictionaries[word] = str(i)
                 else:   
                     self.word2dictionaries[word] += "\t%s" % i
-                if not self.word2hashtagdictionaries.has_key(word_hashtag):
+                if word_hashtag not in self.word2hashtagdictionaries:
                     self.word2hashtagdictionaries[word_hashtag] = str(i)
                 else:
                     self.word2hashtagdictionaries[word_hashtag] += "\t%s" % i
@@ -98,7 +100,7 @@ class DictionaryFeatures(object):
         features = []
         phrase = ' '.join(words[i:i+1]).lower().strip(string.punctuation)
         phrase = WORD_SPLITTER.sub(" ", phrase)
-        if self.word2dictionaries.has_key(phrase):
+        if phrase in self.word2dictionaries:
             for j in self.word2dictionaries[phrase].split('\t'):
                 features.append('DICT=%s' % self.dictionaries[int(j)])
         for window in range(1, self.MAX_WINDOW_SIZE+1):
@@ -108,7 +110,7 @@ class DictionaryFeatures(object):
             if start > -1 and end < len(words) + 1:
                 phrase = ' '.join(words[start:end]).lower().strip(string.punctuation)
                 phrase = WORD_SPLITTER.sub(" ", phrase)
-                if self.word2dictionaries.has_key(phrase):
+                if phrase in self.word2dictionaries:
                     for j in self.word2dictionaries[phrase].split('\t'):
                         features.append('DICTFWD[+%s]=%s' % (window, self.dictionaries[int(j)]))
             ## Backward
@@ -117,7 +119,7 @@ class DictionaryFeatures(object):
             if start > -1 and end < len(words) + 1:
                 phrase = ' '.join(words[start:end]).lower().strip(string.punctuation)
                 phrase = WORD_SPLITTER.sub(" ", phrase)
-                if self.word2dictionaries.has_key(phrase):
+                if phrase in self.word2dictionaries:
                     for j in self.word2dictionaries[phrase].split('\t'):
                         features.append('DICTBCK[-%s]=%s' % (window, self.dictionaries[int(j)]))
             ## Window        
@@ -126,7 +128,7 @@ class DictionaryFeatures(object):
             if start > -1 and end < len(words) + 1:
                 phrase = ' '.join(words[start:end]).lower().strip(string.punctuation)
                 phrase = WORD_SPLITTER.sub(" ", phrase)
-                if self.word2dictionaries.has_key(phrase):
+                if phrase in self.word2dictionaries:
                     for j in self.word2dictionaries[phrase].split('\t'):
                         features.append('DICTWIN[%s]=%s' % (window, self.dictionaries[int(j)]))
                         
@@ -136,7 +138,7 @@ class DictionaryFeatures(object):
             end = start + window
             phrase = ' '.join(words[start:end]).lower().strip(string.punctuation)
             phrase = WORD_SPLITTER.sub(" ", phrase)
-            if self.word2dictionaries.has_key(phrase):
+            if phrase in self.word2dictionaries:
                 for j in self.word2dictionaries[phrase].split('\t'):
                     features.append('DICT=%s' % self.dictionaries[int(j)])
                     if window > 1:
@@ -150,7 +152,7 @@ class DictionaryFeatures(object):
         if len(word) < 2 or word[0] != "#":
             return features
         word = word[1:].lower().strip(string.punctuation)
-        if self.word2hashtagdictionaries.has_key(word):
+        if word in self.word2hashtagdictionaries:
             for j in self.word2hashtagdictionaries[word].split('\t'):
                 features.append('DICT_HASHTAG=%s' % self.dictionaries[int(j)])
         return list(set(features))
@@ -166,7 +168,7 @@ class WordVectors(object):
         if wordvec_file is not None:
             self.model.intersect_word2vec_format(wordvec_file, binary=False)
         if enrich_iters > 0:
-            for i in xrange(enrich_iters):
+            for i in six.moves.range(enrich_iters):
                 self.model.train(sentences, total_examples=len(sentences), epochs=self.model.iter)
         self.model.init_sims(replace=True)
         
@@ -176,7 +178,7 @@ class WordVectors(object):
         cluster_ids = self.cluster_model_.fit_predict(self.model.syn0norm)
         self.cluster_mappings = {
             k: cluster_ids[v.index] 
-            for k,v in self.model.vocab.iteritems()
+            for k,v in six.iteritems(self.model.vocab)
                                 }
         return self.cluster_mappings
     
@@ -306,9 +308,9 @@ class GlobalFeatures(object):
             if self.cluster_vocabs and lookup_key in self.cluster_vocabs:
                 v = dict.get(self.cluster_vocabs, lookup_key)
                 features["_GLOBAL_CLUSTER_=%s" % v] = dict.get(features, "_GLOBAL_CLUSTER_=%s" % v, 0) + 1
-        features = {k: v / sent_length for k,v in features.iteritems()}
+        features = {k: v / sent_length for k,v in six.iteritems(features)}
         if predictions:
-            for k, prob in predictions.iteritems():
+            for k, prob in six.iteritems(predictions):
                 features["_MODEL_=%s" % k] = prob
         return [features for word in sent]
         
@@ -332,7 +334,7 @@ class GlobalFeatures(object):
                 d_hashtag_features = self.dict_features.GetHashtagDictFeatures(word)
                 for k in d_hashtag_features:
                     features[k] = dict.get(features, k, 0) + 1
-        #features = {k: v / sent_length for k,v in features.iteritems()}
+        #features = {k: v / sent_length for k,v in six.iteritems(features)}
         return features
             
     def get_sequence_features(self, sequences):
@@ -376,7 +378,7 @@ class GlobalFeatures(object):
     def get_global_predictions(self, sequences):
         predictions = {}
         X_train = self.tranform_sequence2feature(sequences)
-        for k, model in self.models.iteritems():
+        for k, model in six.iteritems(self.models):
             y_pred = model.predict_proba(X_train)[:, 1]
             predictions[k] = y_pred
         keys = predictions.keys()
@@ -453,7 +455,7 @@ def gen_cluster_features(sent, widx, cid, lookup_key, cluster_vocab, WORD_IDX=0,
                         else:
                             features["{}={}|{}={}".format(*(next_word_f+center_word_f))] = True
         """
-        for k,v in features.iteritems():
+        for k,v in six.iteritems(features):
             if isinstance(v, float) or isinstance(v, bool) or isinstance(v, str) or isinstance(v,int):
                 continue
             else:
@@ -499,7 +501,7 @@ def word2features(sent, widx, WORD_IDX=0,
                 cluster_type="BROWN"
                 if cluster_vocab:
                     clust_values_tuple=False
-                    if isinstance(cluster_vocab.itervalues().next(), tuple):
+                    if isinstance(six.next(six.itervalues(cluster_vocab)), tuple):
                         clust_values_tuple = True
                         cluster_type="CLARK"
                     cluster_tag = "__{}_CLUSTER_{}__".format(cluster_type, cid)
@@ -522,20 +524,20 @@ def word2features(sent, widx, WORD_IDX=0,
     if interactions:
         if widx > 0:
             regex_features_prev = RegexFeatures.process(get_word(sent, widx-1, WORD_IDX))
-            features.update(("%s[-1]" % k, v) for k,v in regex_features_prev.iteritems())
+            features.update(("%s[-1]" % k, v) for k,v in six.iteritems(regex_features_prev))
             features.update({
                     ("%s[-1]|%s" % (k1,k), True)
-                    for k, v in regex_features.iteritems()
-                    for k1, v1 in regex_features_prev.iteritems()
+                    for k, v in six.iteritems(regex_features)
+                    for k1, v1 in six.iteritems(regex_features_prev)
                     if v & v1 & (np.random.rand() > dropout)
                 })
         if widx < len(sent)-1:
             regex_features_next = RegexFeatures.process(get_word(sent, widx+1, WORD_IDX))
-            features.update(("%s[+1]" % k, v) for k,v in regex_features_next.iteritems())
+            features.update(("%s[+1]" % k, v) for k,v in six.iteritems(regex_features_next))
             features.update({
                     ("%s|%s[+1]" % (k,k1), True)
-                    for k, v in regex_features.iteritems()
-                    for k1, v1 in regex_features_next.iteritems()
+                    for k, v in six.iteritems(regex_features)
+                    for k1, v1 in six.iteritems(regex_features_next)
                     if v & v1 & (np.random.rand() > dropout)
                 })
     ## Gazetteer Feature

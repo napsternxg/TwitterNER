@@ -18,14 +18,10 @@ sns.set_style("ticks")
 from itertools import chain
 
 from sklearn.metrics import make_scorer
-from sklearn.cross_validation import cross_val_score
-from sklearn.grid_search import RandomizedSearchCV
 
 import sklearn_crfsuite
 from sklearn_crfsuite import scorers
 from sklearn_crfsuite import metrics
-from sklearn.cross_validation import cross_val_score
-from sklearn.grid_search import RandomizedSearchCV
 
 import regex as re
 from collections import namedtuple, defaultdict, Counter, OrderedDict
@@ -36,7 +32,7 @@ import os, string, sys
 import time, datetime
 import subprocess
 
-from .utils import *
+from utils import *
 
 class CRFModel(object):
     def __init__(self, labels= None, skip_label="O", **kwargs):
