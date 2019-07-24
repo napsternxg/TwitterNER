@@ -82,7 +82,7 @@ class TwitterNER:
                (state in ("I", "E") and previous_state not in ("B", "I")):
                 entity_start = i
             if state in ("E", "U") or \
-               (state in ("B", "I") and (i == len(labeled_tokens) - 1 or predictions[0][i + 1][0] not in ("I", "E"))):
+               (state in ("B", "I") and (i == len(tokens) - 1 or predictions[0][i + 1][0] not in ("I", "E"))):
                 entity_type = label[2:]
                 if entity_type is not None:
                     entities.append((entity_start, i + 1, entity_type))
