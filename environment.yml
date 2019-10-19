@@ -1,0 +1,16 @@
+name: TwitterNER
+dependencies:
+    - python=3
+    - gensim
+    - scikit-learn
+    - regex
+    - matplotlib
+    - seaborn
+    - six
+    - ipython
+    - joblib
+    - pip
+    - ipykernel
+    - pip:
+        - sklearn-crfsuite
+        - pymagnitude
