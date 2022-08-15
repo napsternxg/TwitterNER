@@ -1,5 +1,22 @@
 # TwitterNER [![DOI](https://zenodo.org/badge/68426556.svg)](https://zenodo.org/badge/latestdoi/68426556) 
-Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/ner-shared-task.html and the corresponding workshop paper at WNUT COLING 2016, titled **[Semi-supervised Named Entity Recognition in noisy-text by Shubhanshu Mishra and Jana Diesner](http://aclanthology.info/papers/semi-supervised-named-entity-recognition-in-noisy-text)**
+Twitter named entity extraction for WNUT 2016 http://noisy-text.github.io/2016/ner-shared-task.html and the corresponding workshop paper at WNUT COLING 2016, titled **[Semi-supervised Named Entity Recognition in noisy-text by Shubhanshu Mishra and Jana Diesner](https://aclanthology.org/W16-3927/)**
+
+Please cite as:
+
+```
+@inproceedings{mishra-diesner-2016-semi,
+    title = "Semi-supervised Named Entity Recognition in noisy-text",
+    author = "Mishra, Shubhanshu  and
+      Diesner, Jana",
+    booktitle = "Proceedings of the 2nd Workshop on Noisy User-generated Text ({WNUT})",
+    month = dec,
+    year = "2016",
+    address = "Osaka, Japan",
+    publisher = "The COLING 2016 Organizing Committee",
+    url = "https://aclanthology.org/W16-3927",
+    pages = "203--212",
+}
+```
 
 ![model architechture](COLING2016-WNUT-Model-Architechture.png "Model Architechture")
 
@@ -59,20 +76,7 @@ See `Data preprocessing.ipynb`
 See `KerasCharRNN.ipynb`, and `KerasWordRNN.ipynb`
 
 
-Please cite as:
 
-```
-@INPROCEEDINGS {mishra2016_wnut_ner,
-    author    = "Shubhanshu Mishra and Jana Diesner",
-    title     = "Semi-supervised Named Entity Recognition in noisy-text",
-    booktitle = "Proceedings of the 2nd Workshop on Noisy User-generated Text (WNUT)",
-    publisher = "The COLING 2016 Organizing Committee",
-    pages     = "203-212",
-    url       = "http://aclweb.org/anthology/W16-3927",
-    year      = "2016",
-    month     = "dec"
-}
-```
 
 
 ## Acknowledgements
